@@ -13,6 +13,19 @@ Configure Raspberry Pi as a Wi-Fi Access Point (AP) while simultaneously connect
 
 ---
 
+## Utilities Used
+
+| Utility | Purpose in this setup |
+|---|---|
+| `iw` | Manages Wi-Fi-specific interfaces and creates the virtual AP interface `uap0`. |
+| `ip` | Manages Linux network interfaces and checks assigned IP addresses. |
+| `sysctl` | Enables kernel IP forwarding so traffic can pass between `uap0` and `wlan0`. |
+| `iptables` | Adds NAT and forwarding rules for internet access from AP clients. |
+| `nmcli` | Configures and starts the NetworkManager Wi-Fi AP connection. |
+| `dnsmasq` | Provides DHCP and DNS service for clients connected to `uap0`. |
+
+---
+
 ## Boot Order
 
 ```
@@ -39,7 +52,7 @@ sudo apt install -y network-manager #  may already be installed on some Raspberr
 Creates the virtual AP interface `uap0` before NetworkManager starts.
 
 ```bash
-sudo nano /etc/systemd/system/create_uap0.service
+sudo vim /etc/systemd/system/create_uap0.service
 ```
 
 ```ini
@@ -65,7 +78,7 @@ WantedBy=multi-user.target
 Configures IP forwarding and iptables NAT so AP clients can reach the internet.
 
 ```bash
-sudo nano /etc/systemd/system/uap0-nat.service
+sudo vim /etc/systemd/system/uap0-nat.service
 ```
 
 ```ini
@@ -95,7 +108,7 @@ WantedBy=multi-user.target
 ## 4. File: `/etc/NetworkManager/NetworkManager.conf`
 
 ```bash
-sudo nano /etc/NetworkManager/NetworkManager.conf
+sudo vim /etc/NetworkManager/NetworkManager.conf
 ```
 
 ```ini
@@ -124,7 +137,7 @@ sudo systemctl disable dnsmasq
 ```
 
 ```bash
-sudo nano /etc/dnsmasq.conf
+sudo vim /etc/dnsmasq.conf
 ```
 
 ```
