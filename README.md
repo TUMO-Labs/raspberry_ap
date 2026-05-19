@@ -29,9 +29,7 @@ wlan0 up
 
 ```bash
 sudo apt update
-sudo apt install -y dnsmasq 
-sudo systemctl stop dnsmasq
-sudo systemctl disable dnsmasq
+sudo apt install -y network-manager #  may already be installed on some Raspberry Pi OS images
 ```
 
 ---
@@ -116,6 +114,14 @@ wifi.scan-rand-mac-address=no
 ---
 
 ## 5. File: `/etc/dnsmasq.conf`
+
+Install `dnsmasq` only after the AP interface and services are defined, then stop and disable its default startup until the custom config is ready.
+
+```bash
+sudo apt install -y dnsmasq
+sudo systemctl stop dnsmasq
+sudo systemctl disable dnsmasq
+```
 
 ```bash
 sudo nano /etc/dnsmasq.conf
