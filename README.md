@@ -29,9 +29,9 @@ wlan0 up
 
 ```bash
 sudo apt update
-sudo apt install -y dnsmasq network-manager
+sudo apt install -y dnsmasq 
 sudo systemctl stop dnsmasq
-sudo systemctl disable dnsmasq  # включим позже через enable
+sudo systemctl disable dnsmasq
 ```
 
 ---
