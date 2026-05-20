@@ -42,7 +42,7 @@ wlan0 up
 
 ```bash
 sudo apt update
-sudo apt install -y network-manager #  may already be installed on some Raspberry Pi OS images
+sudo apt install -y network-manager iptables #  may already be installed on some Raspberry Pi OS images
 ```
 
 ---
